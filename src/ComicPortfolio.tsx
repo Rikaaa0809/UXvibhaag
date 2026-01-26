@@ -1,5 +1,32 @@
 import React, { useState, useRef, useEffect } from 'react';
 
+// Import all images at the top
+const BASE_URL = import.meta.env.BASE_URL;
+  const Picture1 = `${BASE_URL}Picture1.png`;
+  const Picture2 = `${BASE_URL}Picture2.png`;
+  const Picture3 = `${BASE_URL}Picture3.png`;
+  const Picture4 = `${BASE_URL}Picture4.png`;
+  const Picture5 = `${BASE_URL}Picture5.png`;
+  const Picture6 = `${BASE_URL}Picture6.png`;
+  const Picture7 = `${BASE_URL}Picture7.png`;
+  const Picture8 = `${BASE_URL}Picture8.png`;
+  const Picture9 = `${BASE_URL}Picture9.png`;
+  const Picture10 = `${BASE_URL}Picture10.png`;
+  const Picture11 = `${BASE_URL}Picture11.png`;
+  const Picture12 = `${BASE_URL}Picture12.png`;
+  const Picture13 = `${BASE_URL}Picture13.png`;
+  const Picture16 = `${BASE_URL}Picture16.png`;
+  const Picture17 = `${BASE_URL}Picture17.png`;
+  const Picture18 = `${BASE_URL}Picture18.png`;
+  const Picture19 = `${BASE_URL}Picture19.png`;
+  const Picture20 = `${BASE_URL}Picture20.png`;
+  const Picture21 = `${BASE_URL}Picture21.png`;
+  const Picture22 = `${BASE_URL}Picture22.png`;
+  const Picture23 = `${BASE_URL}Picture23.png`;
+  const Picture24 = `${BASE_URL}Picture24.png`;
+
+  
+
 const ComicPortfolio: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered8, setIsHovered8] = useState(false);
@@ -43,18 +70,18 @@ const ComicPortfolio: React.FC = () => {
     };
 
     if (canvasRef5.current) {
-      initCanvas(canvasRef5.current, "/Picture5.png");
+      initCanvas(canvasRef5.current, Picture5);
     }
 
     if (canvasRef8.current) {
-      initCanvas(canvasRef8.current, "/Picture8.png");
+      initCanvas(canvasRef8.current, Picture8);
     }
   }, [isTouchDevice]);
 
   // Scratch effect handler
   const handleScratch = (
     e: React.TouchEvent<HTMLCanvasElement>,
-    canvasRef: React.RefObject<HTMLCanvasElement>,
+    canvasRef: React.RefObject<HTMLCanvasElement | null>,
     setProgress: (progress: number) => void
   ) => {
     e.preventDefault();
@@ -91,7 +118,7 @@ const ComicPortfolio: React.FC = () => {
   };
 
   const handleDownloadResume = () => {
-    const resumeUrl = '/resume.pdf';
+    const resumeUrl = `${import.meta.env.BASE_URL}resume.pdf`;
     const link = document.createElement('a');
     link.href = resumeUrl;
     link.download = 'resume.pdf';
@@ -188,9 +215,9 @@ const ComicPortfolio: React.FC = () => {
             flexDirection: isTouchDevice ? "column" : "row",
             gap: isTouchDevice ? "20px" : "0"
           }}>
-                <img src={isTouchDevice ? "/Picture16.png" : "/Picture10.png"} alt="Panel 10" style={{height: isTouchDevice ? "auto" : "320px", width: isTouchDevice ? "100%" : "auto"}} />
-               <img src={isTouchDevice ? "/Picture17.png" : "/Picture1.png"} alt="Panel 1" style={{height: isTouchDevice ? "auto" : "320px", width: isTouchDevice ? "100%" : "auto"}} />
-               <img src={isTouchDevice ? "/Picture18.png" : "/Picture2.png"} alt="Panel 2" style={{height: isTouchDevice ? "auto" : "320px", width: isTouchDevice ? "100%" : "auto"}} />
+                <img src={isTouchDevice ? Picture16 : Picture10} alt="Panel 10" style={{height: isTouchDevice ? "auto" : "320px", width: isTouchDevice ? "100%" : "auto"}} />
+               <img src={isTouchDevice ? Picture17 : Picture1} alt="Panel 1" style={{height: isTouchDevice ? "auto" : "320px", width: isTouchDevice ? "100%" : "auto"}} />
+               <img src={isTouchDevice ? Picture18 : Picture2} alt="Panel 2" style={{height: isTouchDevice ? "auto" : "320px", width: isTouchDevice ? "100%" : "auto"}} />
           </div>
 
           {/* Row 2 */}
@@ -200,8 +227,8 @@ const ComicPortfolio: React.FC = () => {
             flexDirection: isTouchDevice ? "column" : "row",
             gap: isTouchDevice ? "20px" : "0"
           }}>
-                <img src={isTouchDevice ? "/Picture19.png" : "/Picture3.png"} alt="Panel 3" style={{borderWidth: "3px", borderColor: "black", height: isTouchDevice ? "auto" : "350px", width: isTouchDevice ? "100%" : "auto", marginRight: isTouchDevice ? "0" : "20px"}} />
-                <img src={isTouchDevice ? "/Picture20.png" : "/Picture4.png"} alt="Panel 4" style={{height: isTouchDevice ? "auto" : "350px", width: isTouchDevice ? "100%" : "auto"}}/>
+                <img src={isTouchDevice ? Picture19 : Picture3} alt="Panel 3" style={{borderWidth: "3px", borderColor: "black", height: isTouchDevice ? "auto" : "350px", width: isTouchDevice ? "100%" : "auto", marginRight: isTouchDevice ? "0" : "20px"}} />
+                <img src={isTouchDevice ? Picture20 : Picture4} alt="Panel 4" style={{height: isTouchDevice ? "auto" : "350px", width: isTouchDevice ? "100%" : "auto"}}/>
           </div>
 
           {/* Row 3 */}
@@ -223,7 +250,7 @@ const ComicPortfolio: React.FC = () => {
                     <>
                       {/* Colored image underneath */}
                       <img 
-                        src="/Picture11.png" 
+                        src={Picture11} 
                         alt="Colored version" 
                         style={{
                           height: "auto",
@@ -250,7 +277,7 @@ const ComicPortfolio: React.FC = () => {
                     </>
                   ) : (
                     <img
-                      src={isHovered ? "/Picture11.png" : "/Picture5.png"}
+                      src={isHovered ? Picture11 : Picture5}
                       alt="Hover to change"
                       onMouseEnter={() => setIsHovered(true)}
                       onMouseLeave={() => setIsHovered(false)}
@@ -260,12 +287,12 @@ const ComicPortfolio: React.FC = () => {
                   )}
                 </div>
                 
-                <img src={isTouchDevice ? "/Picture21.png" : "/Picture6.png"} alt="Panel 6" style={{
+                <img src={isTouchDevice ? Picture21 : Picture6} alt="Panel 6" style={{
                   height: isTouchDevice ? "auto" : "350px",
                   width: isTouchDevice ? "100%" : "auto",
                   marginLeft: isTouchDevice ? "0" : "-50px"
                 }} />
-                <img src={isTouchDevice ? "/Picture22.png" : "/Picture9.png"} alt="Panel 9" style={{
+                <img src={isTouchDevice ? Picture22 : Picture9} alt="Panel 9" style={{
                   height: isTouchDevice ? "auto" : "300px",
                   width: isTouchDevice ? "100%" : "auto",
                   marginLeft: isTouchDevice ? "0" : "20px", 
@@ -292,7 +319,7 @@ const ComicPortfolio: React.FC = () => {
             gap: isTouchDevice ? "20px" : "0"
           }}>
             
-                <img src={isTouchDevice ? "/Picture23.png" : "/Picture7.png"} alt="Panel 7" style={{
+                <img src={isTouchDevice ? Picture23 : Picture7} alt="Panel 7" style={{
                   height: isTouchDevice ? "auto" : "450px",
                   width: isTouchDevice ? "100%" : "auto",
                   marginRight: isTouchDevice ? "0" : "20px"
@@ -309,7 +336,7 @@ const ComicPortfolio: React.FC = () => {
                     <>
                       {/* Colored image underneath */}
                       <img 
-                        src="/Picture12.png" 
+                        src={Picture12} 
                         alt="Colored version" 
                         style={{
                           height: "auto",
@@ -336,7 +363,7 @@ const ComicPortfolio: React.FC = () => {
                     </>
                   ) : (
                     <img 
-                      src={isHovered8 ? "/Picture12.png" : "/Picture8.png"} 
+                      src={isHovered8 ? Picture12 : Picture8} 
                       alt="Panel 8" 
                       onMouseEnter={() => setIsHovered8(true)}
                       onMouseLeave={() => setIsHovered8(false)}
@@ -346,7 +373,7 @@ const ComicPortfolio: React.FC = () => {
                   )}
                 </div>
                 
-              <img src={isTouchDevice ? "/Picture24.png" : "/Picture13.png"} alt="Panel 13" style={{
+              <img src={isTouchDevice ? Picture24 : Picture13} alt="Panel 13" style={{
                 height: isTouchDevice ? "auto" : "450px",
                 width: isTouchDevice ? "100%" : "auto"
               }} />

@@ -1,9 +1,9 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import ComicPortfolio from './ComicPortfolio';
 import Contact from './Contact';
 import Rely from './Rely'
-import SelfCheckout from './Selfcheckout';
+import SelfCheckout from './SelfCheckout';
 
 function App() {
   return (
