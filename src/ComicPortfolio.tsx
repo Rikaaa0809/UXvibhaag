@@ -216,8 +216,23 @@ const ComicPortfolio: React.FC = () => {
         </div>
       )}
 
-      {/* Main Content */}
-      <div style={{backgroundColor: "#F6EFD2", padding: "30px", overflowX: "hidden"}}>
+      {/* Desktop Container Wrapper */}
+      <div style={{
+        width: "100vw",
+        height: "100vh",
+        overflow: "auto",
+        position: "fixed",
+        top: 0,
+        left: 0
+      }}>
+        {/* Main Content */}
+        <div style={{
+          backgroundColor: "#F6EFD2", 
+          padding: "30px", 
+          overflowX: "hidden",
+          width: "100%",
+          boxSizing: "border-box"
+        }}>
         
         <div>
           {/* Row 1 */}
@@ -307,12 +322,14 @@ const ComicPortfolio: React.FC = () => {
                   width: isTouchDevice ? "100%" : "auto",
                   marginLeft: isTouchDevice ? "0" : "-50px"
                 }} />
-                <img src={Picture9} alt="Panel 9" style={{
-                  height: isTouchDevice ? "auto" : "300px",
-                  width: isTouchDevice ? "100%" : "auto",
-                  marginLeft: isTouchDevice ? "0" : "20px", 
-                  marginTop: isTouchDevice ? "0" : "30px"
-                }} />
+                {!isTouchDevice && (
+                  <img src={Picture9} alt="Panel 9" style={{
+                    height: "300px",
+                    width: "auto",
+                    marginLeft: "20px", 
+                    marginTop: "30px"
+                  }} />
+                )}
                 <button className="download-btn" onClick={handleDownloadResume} style={{
                   marginLeft: isTouchDevice ? "0" : "-240px", 
                   height: isTouchDevice ? "auto" : "300px", 
@@ -451,6 +468,7 @@ const ComicPortfolio: React.FC = () => {
 
       
     </div>
+      </div>
     </div>
   );
 
