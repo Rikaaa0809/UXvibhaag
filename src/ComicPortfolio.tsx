@@ -22,7 +22,7 @@ const BASE_URL = import.meta.env.BASE_URL;
   const Picture20 = `${BASE_URL}Picture20.png`;
   const Picture21 = `${BASE_URL}Picture21.png`;
   const Picture22 = `${BASE_URL}Picture22.png`;
-  const Picture23 = `${BASE_URL}Picture23.png`;
+  
   const Picture24 = `${BASE_URL}Picture24.png`;
 
   
@@ -36,6 +36,10 @@ const ComicPortfolio: React.FC = () => {
   // Scratch progress for touch devices
   const [scratchProgress5, setScratchProgress5] = useState(0);
   const [scratchProgress8, setScratchProgress8] = useState(0);
+  
+  // Heartbeat animation states
+  const [showHeartbeat5, setShowHeartbeat5] = useState(false);
+  const [showHeartbeat8, setShowHeartbeat8] = useState(false);
   
   const canvasRef5 = useRef<HTMLCanvasElement>(null);
   const canvasRef8 = useRef<HTMLCanvasElement>(null);
@@ -70,19 +74,22 @@ const ComicPortfolio: React.FC = () => {
     };
 
     if (canvasRef5.current) {
-      initCanvas(canvasRef5.current, Picture5);
+      initCanvas(canvasRef5.current, Picture21); // Mobile uses Picture21
     }
 
     if (canvasRef8.current) {
-      initCanvas(canvasRef8.current, Picture8);
+      initCanvas(canvasRef8.current, Picture8); // Mobile uses Picture8
     }
   }, [isTouchDevice]);
+
+  
 
   // Scratch effect handler
   const handleScratch = (
     e: React.TouchEvent<HTMLCanvasElement>,
     canvasRef: React.RefObject<HTMLCanvasElement | null>,
-    setProgress: (progress: number) => void
+    setProgress: (progress: number) => void,
+    setShowHeartbeat: (show: boolean) => void
   ) => {
     e.preventDefault();
     const canvas = canvasRef.current;
@@ -101,7 +108,7 @@ const ComicPortfolio: React.FC = () => {
     // Erase the B&W overlay where user touches to reveal color underneath
     ctx.globalCompositeOperation = 'destination-out';
     ctx.beginPath();
-    ctx.arc(x, y, 40, 0, Math.PI * 2);
+    ctx.arc(x, y, 160, 0, Math.PI * 2);
     ctx.fill();
 
     // Calculate scratch progress
@@ -115,6 +122,11 @@ const ComicPortfolio: React.FC = () => {
     
     const progress = (transparent / (pixels.length / 4)) * 100;
     setProgress(progress);
+
+    // Trigger heartbeat animation at 60%
+    if (progress >= 60) {
+      setShowHeartbeat(true);
+    }
   };
 
   const handleDownloadResume = () => {
@@ -130,15 +142,15 @@ const ComicPortfolio: React.FC = () => {
   };
 
   const handleContactClick = () => {
-    window.location.href = '/Contact';
+    window.location.href = '#/contact';
   };
 
   const handleRelyClick = () => {
-    window.location.href = '/Rely';
+    window.location.href = '#/Rely';
   };
 
   const handleSelfCheckoutClick = () => {
-    window.location.href = '/SelfCheckout';
+    window.location.href = '#/SelfCheckout';
   };
 
   return (
@@ -240,7 +252,7 @@ const ComicPortfolio: React.FC = () => {
             position: "relative"
           }}>
             
-                {/* Picture 5 - Hover or Scratch */}
+                {/* Picture 5/21 - Hover or Scratch */}
                 <div style={{
                   position: "relative", 
                   height: isTouchDevice ? "auto" : "350px",
@@ -248,21 +260,22 @@ const ComicPortfolio: React.FC = () => {
                 }}>
                   {isTouchDevice ? (
                     <>
-                      {/* Colored image underneath */}
+                      {/* Colored image underneath - Picture24 for mobile */}
                       <img 
-                        src={Picture11} 
+                        src={Picture24} 
                         alt="Colored version" 
                         style={{
                           height: "auto",
                           width: "100%",
-                          display: "block"
+                          display: "block",
+                          animation: showHeartbeat5 ? "heartbeat 1s ease-in-out" : "none"
                         }} 
                       />
-                      {/* B&W overlay canvas */}
+                      {/* B&W overlay canvas - Picture21 for mobile */}
                       <canvas
                         ref={canvasRef5}
-                        onTouchMove={(e) => handleScratch(e, canvasRef5, setScratchProgress5)}
-                        onTouchStart={(e) => handleScratch(e, canvasRef5, setScratchProgress5)}
+                        onTouchMove={(e) => handleScratch(e, canvasRef5, setScratchProgress5, setShowHeartbeat5)}
+                        onTouchStart={(e) => handleScratch(e, canvasRef5, setScratchProgress5, setShowHeartbeat5)}
                         onClick={scratchProgress5 > 50 ? handleSelfCheckoutClick : undefined}
                         style={{
                           position: "absolute",
@@ -271,7 +284,9 @@ const ComicPortfolio: React.FC = () => {
                           width: "100%",
                           height: "100%",
                           cursor: scratchProgress5 > 50 ? "pointer" : "default",
-                          touchAction: "none"
+                          touchAction: "none",
+                          opacity: showHeartbeat5 ? 0 : 1,
+                          transition: "opacity 0.5s ease-out"
                         }}
                       />
                     </>
@@ -287,12 +302,12 @@ const ComicPortfolio: React.FC = () => {
                   )}
                 </div>
                 
-                <img src={isTouchDevice ? Picture21 : Picture6} alt="Panel 6" style={{
+                <img src={isTouchDevice ? Picture22 : Picture6} alt="Panel 6" style={{
                   height: isTouchDevice ? "auto" : "350px",
                   width: isTouchDevice ? "100%" : "auto",
                   marginLeft: isTouchDevice ? "0" : "-50px"
                 }} />
-                <img src={isTouchDevice ? Picture22 : Picture9} alt="Panel 9" style={{
+                <img src={Picture9} alt="Panel 9" style={{
                   height: isTouchDevice ? "auto" : "300px",
                   width: isTouchDevice ? "100%" : "auto",
                   marginLeft: isTouchDevice ? "0" : "20px", 
@@ -319,13 +334,13 @@ const ComicPortfolio: React.FC = () => {
             gap: isTouchDevice ? "20px" : "0"
           }}>
             
-                <img src={isTouchDevice ? Picture23 : Picture7} alt="Panel 7" style={{
+                <img src={Picture7} alt="Panel 7" style={{
                   height: isTouchDevice ? "auto" : "450px",
                   width: isTouchDevice ? "100%" : "auto",
                   marginRight: isTouchDevice ? "0" : "20px"
                 }} />
                 
-                {/* Picture 8 - Hover or Scratch */}
+                {/* Picture 8/23 - Hover or Scratch */}
                 <div style={{
                   position: "relative", 
                   height: isTouchDevice ? "auto" : "450px",
@@ -334,21 +349,22 @@ const ComicPortfolio: React.FC = () => {
                 }}>
                   {isTouchDevice ? (
                     <>
-                      {/* Colored image underneath */}
+                      {/* Colored image underneath - Picture12 for mobile */}
                       <img 
                         src={Picture12} 
                         alt="Colored version" 
                         style={{
                           height: "auto",
                           width: "100%",
-                          display: "block"
+                          display: "block",
+                          animation: showHeartbeat8 ? "heartbeat 1s ease-in-out" : "none"
                         }} 
                       />
-                      {/* B&W overlay canvas */}
+                      {/* B&W overlay canvas - Picture23 for mobile */}
                       <canvas
                         ref={canvasRef8}
-                        onTouchMove={(e) => handleScratch(e, canvasRef8, setScratchProgress8)}
-                        onTouchStart={(e) => handleScratch(e, canvasRef8, setScratchProgress8)}
+                        onTouchMove={(e) => handleScratch(e, canvasRef8, setScratchProgress8, setShowHeartbeat8)}
+                        onTouchStart={(e) => handleScratch(e, canvasRef8, setScratchProgress8, setShowHeartbeat8)}
                         onClick={scratchProgress8 > 50 ? handleRelyClick : undefined}
                         style={{
                           position: "absolute",
@@ -357,7 +373,9 @@ const ComicPortfolio: React.FC = () => {
                           width: "100%",
                           height: "100%",
                           cursor: scratchProgress8 > 50 ? "pointer" : "default",
-                          touchAction: "none"
+                          touchAction: "none",
+                          opacity: showHeartbeat8 ? 0 : 1,
+                          transition: "opacity 0.5s ease-out"
                         }}
                       />
                     </>
@@ -373,7 +391,7 @@ const ComicPortfolio: React.FC = () => {
                   )}
                 </div>
                 
-              <img src={isTouchDevice ? Picture24 : Picture13} alt="Panel 13" style={{
+              <img src={Picture13} alt="Panel 13" style={{
                 height: isTouchDevice ? "auto" : "450px",
                 width: isTouchDevice ? "100%" : "auto"
               }} />
@@ -398,6 +416,14 @@ const ComicPortfolio: React.FC = () => {
                 @keyframes scroll {
                   0% { transform: translateX(0); }
                   100% { transform: translateX(-50%); }
+                }
+                @keyframes heartbeat {
+                  0% { transform: scale(1); }
+                  14% { transform: scale(1.1); }
+                  28% { transform: scale(1); }
+                  42% { transform: scale(1.1); }
+                  56% { transform: scale(1); }
+                  100% { transform: scale(1); }
                 }
               `}
             </style>

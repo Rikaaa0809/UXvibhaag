@@ -1,6 +1,8 @@
 import React from 'react';
 import { useEffect, useRef } from 'react';
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const Rely: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -27,6 +29,7 @@ const Rely: React.FC = () => {
       observer.disconnect();
     };
   }, []);
+  
   return (
     <div style={{
       backgroundColor: "#F6EFD2",
@@ -57,7 +60,7 @@ const Rely: React.FC = () => {
           marginBottom: "40px"
         }}>
           <img 
-            src="/Picture14.png" 
+            src={`${BASE_URL}Picture14.png`}
             alt="Rely Project" 
             style={{
               width: "100%",
@@ -89,7 +92,7 @@ const Rely: React.FC = () => {
               borderRadius: "10px"
             }}
           >
-            <source src="/Video1.mp4" type="video/mp4" />
+            <source src={`${BASE_URL}Video1.mp4`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

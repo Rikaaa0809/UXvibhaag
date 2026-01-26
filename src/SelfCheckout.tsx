@@ -1,5 +1,7 @@
 import React from 'react';
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const SelfCheckout: React.FC = () => {
   return (
     <div style={{
@@ -30,7 +32,7 @@ const SelfCheckout: React.FC = () => {
           alignItems: "center"
         }}>
           <img 
-            src="/Picture15.png" 
+            src={`${BASE_URL}Picture15.png`}
             alt="Self-Checkout Project" 
             style={{
               width: "100%",
