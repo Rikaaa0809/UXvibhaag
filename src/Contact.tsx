@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = import.meta.env.BASE_URL;
 const Picture25 = `${BASE_URL}Picture25.png`;
@@ -9,6 +10,7 @@ const Picture29 = `${BASE_URL}Picture29.png`;
 const Picture30 = `${BASE_URL}Picture30.png`;
 
 const Contact: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -51,12 +53,12 @@ const Contact: React.FC = () => {
 
   // Individual project links - update these with actual project URLs
   const projects = [
-    { image: Picture25, link: "https://www.behance.net/niharikasharma17" },
-    { image: Picture26, link: "https://www.behance.net/niharikasharma17" },
-    { image: Picture27, link: "https://www.behance.net/niharikasharma17" },
-    { image: Picture28, link: "https://www.behance.net/niharikasharma17" },
-    { image: Picture29, link: "https://www.behance.net/niharikasharma17" },
-    { image: Picture30, link: "https://www.behance.net/niharikasharma17" }
+    { image: Picture25, link: "/Ample", internal: true },
+    { image: Picture26, link: "https://www.behance.net/gallery/235581487/Hexa-Smart-Groceries-Assistant", internal: false },
+    { image: Picture27, link: "https://www.behance.net/gallery/168101295/Redefining-Netflix-UIUX-and-Product", internal: false },
+    { image: Picture28, link: "https://www.behance.net/niharikasharma17", internal: false },
+    { image: Picture29, link: "https://www.behance.net/gallery/198885491/Product-Design-Portfolio", internal: false },
+    { image: Picture30, link: "https://www.behance.net/niharikasharma17", internal: false }
   ];
 
   return (
@@ -236,11 +238,9 @@ const Contact: React.FC = () => {
                 gap: "0"
               }}>
                 {projects.map((project, index) => (
-                  <a
+                  <div
                     key={index}
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={() => project.internal ? navigate(project.link) : window.open(project.link, "_blank")}
                     style={{
                       position: "relative",
                       overflow: "hidden",
@@ -258,7 +258,7 @@ const Contact: React.FC = () => {
                         display: "block"
                       }}
                     />
-                  </a>
+                  </div>
                 ))}
               </div>
             </div>
@@ -437,11 +437,9 @@ const Contact: React.FC = () => {
               gap: "0"
             }}>
               {projects.map((project, index) => (
-                <a
+                <div
                   key={index}
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={() => project.internal ? navigate(project.link) : window.open(project.link, "_blank")}
                   onMouseEnter={() => setHoveredBox(index)}
                   onMouseLeave={() => setHoveredBox(null)}
                   style={{
@@ -472,7 +470,7 @@ const Contact: React.FC = () => {
                     transition: "opacity 0.3s ease",
                     pointerEvents: "none"
                   }}></div>
-                </a>
+                </div>
               ))}
             </div>
 
