@@ -53,12 +53,12 @@ const Contact: React.FC = () => {
 
   // Individual project links - update these with actual project URLs
   const projects = [
-    { image: Picture25, link: "/Ample", internal: true },
-    { image: Picture26, link: "https://www.behance.net/gallery/235581487/Hexa-Smart-Groceries-Assistant", internal: false },
-    { image: Picture27, link: "https://www.behance.net/gallery/168101295/Redefining-Netflix-UIUX-and-Product", internal: false },
-    { image: Picture28, link: "https://www.behance.net/niharikasharma17", internal: false },
-    { image: Picture29, link: "https://www.behance.net/gallery/198885491/Product-Design-Portfolio", internal: false },
-    { image: Picture30, link: "https://www.behance.net/niharikasharma17", internal: false }
+    { image: Picture25, link: "/Ample", internal: true, title: "Mobile Application Design" },
+    { image: Picture26, link: "https://www.behance.net/niharikasharma17", internal: false, title: "System Design" },
+    { image: Picture27, link: "https://www.behance.net/niharikasharma17", internal: false, title: "System Design" },
+    { image: Picture28, link: "/Animation", internal: true, title: "3D Animation" },
+    { image: Picture29, link: "https://www.behance.net/niharikasharma17", internal: false, title: "Product Design" },
+    { image: Picture30, link: "/VideoProduction", internal: true, title: "Video Storytelling" }
   ];
 
   return (
@@ -282,49 +282,52 @@ const Contact: React.FC = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: "120px 40px",
             boxSizing: "border-box",
             overflowY: "auto"
           }}>
-            <h1 style={{
-              fontSize: "clamp(24px, 4vw, 36px)",
-              marginBottom: "-30px",
-              color: "#333",
-              textAlign: "center"
+            {/* Headings - centered horizontally and vertically, no spacing */}
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "20px"
             }}>
-              Wanted to find out what happens next?
-            </h1>
+              <h1 style={{
+                fontSize: "clamp(24px, 4vw, 36px)",
+                margin: 0,
+                color: "#333",
+                textAlign: "center"
+              }}>
+                Wanted to find out what happens next?
+              </h1>
 
-            <h2 style={{
-              fontSize: "clamp(32px, 6vw, 48px)",
-              fontWeight: "bold",
-              marginBottom: "10px",
-              color: "#000",
-              letterSpacing: "2px",
-              textAlign: "center"
-            }}>
-              WE WORK TOGETHER!
-            </h2>
+              <h2 style={{
+                fontSize: "clamp(32px, 6vw, 48px)",
+                fontWeight: "bold",
+                margin: 0,
+                color: "#000",
+                letterSpacing: "2px",
+                textAlign: "center"
+              }}>
+                WE WORK TOGETHER!
+              </h2>
 
-            <p style={{
-              fontSize: "clamp(16px, 2.5vw, 20px)",
-              marginBottom: "40px",
-              color: "#555",
-              textAlign: "center"
-            }}>
-              and continue this story
-            </p>
+              <p style={{
+                fontSize: "clamp(16px, 2.5vw, 20px)",
+                margin: 0,
+                color: "#555",
+                textAlign: "center"
+              }}>
+                and continue this story
+              </p>
+            </div>
 
-            {/* Contact Form */}
+            {/* Contact Form - no border, no padding, no margin */}
             <div style={{
               display: "flex",
               flexDirection: "column",
               gap: "20px",
-              backgroundColor: "white",
-              padding: "50px",
-              borderRadius: "20px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-              border: "3px solid black",
               width: "100%",
               maxWidth: "500px"
             }}>
@@ -338,8 +341,8 @@ const Contact: React.FC = () => {
                 style={{
                   padding: "15px",
                   fontSize: "16px",
-                  border: "2px solid #333",
-                  borderRadius: "5px",
+                  border: "none",
+                  borderRadius: "0",
                   outline: "none"
                 }}
               />
@@ -354,8 +357,8 @@ const Contact: React.FC = () => {
                 style={{
                   padding: "15px",
                   fontSize: "16px",
-                  border: "2px solid #333",
-                  borderRadius: "5px",
+                  border: "none",
+                  borderRadius: "0",
                   outline: "none"
                 }}
               />
@@ -370,8 +373,8 @@ const Contact: React.FC = () => {
                 style={{
                   padding: "15px",
                   fontSize: "16px",
-                  border: "2px solid #333",
-                  borderRadius: "5px",
+                  border: "none",
+                  borderRadius: "0",
                   outline: "none",
                   resize: "vertical",
                   fontFamily: "inherit"
@@ -387,7 +390,7 @@ const Contact: React.FC = () => {
                   backgroundColor: "#333",
                   color: "white",
                   border: "none",
-                  borderRadius: "5px",
+                  borderRadius: "0",
                   cursor: "pointer",
                   transition: "background-color 0.3s"
                 }}
@@ -397,6 +400,11 @@ const Contact: React.FC = () => {
                 SUBMIT
               </button>
             </div>
+
+            {/* Footer - desktop */}
+            <footer style={{ marginTop: "30px", textAlign: "center" }}>
+              <p style={{ color: "#555", margin: 0 }}>&copy; 2025 Niharika Sharma. All Rights Reserved.</p>
+            </footer>
           </div>
 
           {/* Right Side - Projects Grid */}
@@ -470,20 +478,23 @@ const Contact: React.FC = () => {
                     transition: "opacity 0.3s ease",
                     pointerEvents: "none"
                   }}></div>
+                  {/* Project Title */}
+                  <div style={{
+                    position: "absolute",
+                    bottom: "8px",
+                    [index % 2 === 0 ? "left" : "right"]: "8px",
+                    fontSize: "12px",
+                    color: "#fff",
+                    opacity: hoveredBox === index ? 0 : 1,
+                    transition: "opacity 0.3s ease",
+                    pointerEvents: "none",
+                    whiteSpace: "nowrap"
+                  }}>
+                    {project.title}
+                  </div>
                 </div>
               ))}
             </div>
-
-            {/* Footer - desktop */}
-            <footer style={{
-              position: "absolute",
-              bottom: "20px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              textAlign: "center"
-            }}>
-              <p style={{ color: "#999" }}>&copy; 2025 Niharika Sharma. All Rights Reserved.</p>
-            </footer>
           </div>
         </>
       )}

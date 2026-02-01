@@ -130,10 +130,10 @@ const ComicPortfolio: React.FC = () => {
   };
 
   const handleDownloadResume = () => {
-    const resumeUrl = `${import.meta.env.BASE_URL}resume.pdf`;
+    const ResumeUrl = `${import.meta.env.BASE_URL}Resume.pdf`;
     const link = document.createElement('a');
-    link.href = resumeUrl;
-    link.download = 'resume.pdf';
+    link.href = ResumeUrl;
+    link.download = 'Resume.pdf';
     link.click();
   };
 

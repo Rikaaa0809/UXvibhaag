@@ -5,6 +5,8 @@ import Contact from './Contact';
 import Rely from './Rely'
 import SelfCheckout from './SelfCheckout';
 import Ample from './Ample'
+import Animation from './Animation';
+import VideoProduction from './VideoProduction';
 
 function App() {
   return (
@@ -13,8 +15,10 @@ function App() {
         <Route path="/" element={<ComicPortfolio />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/Rely" element={<Rely />} />
-         <Route path="/SelfCheckout" element={<SelfCheckout />} />
-         <Route path="/Ample" element={<Ample />} />
+        <Route path="/SelfCheckout" element={<SelfCheckout />} />
+        <Route path="/Ample" element={<Ample />} />
+        <Route path="/Animation" element={<Animation />} />
+        <Route path="/VideoProduction" element={<VideoProduction />} />
       </Routes>
     </Router>
   );
