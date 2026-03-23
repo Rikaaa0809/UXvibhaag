@@ -54,10 +54,10 @@ const Contact: React.FC = () => {
   // Individual project links - update these with actual project URLs
   const projects = [
     { image: Picture25, link: "/Ample", internal: true, title: "Mobile Application Design" },
-    { image: Picture26, link: "https://www.behance.net/niharikasharma17", internal: false, title: "System Design" },
-    { image: Picture27, link: "https://www.behance.net/niharikasharma17", internal: false, title: "System Design" },
+    { image: Picture26, link: "https://www.behance.net/gallery/235581487/Hexa-Smart-Groceries-Assistant", internal: false, title: "System Design" },
+    { image: Picture27, link: "https://www.behance.net/gallery/168101295/Redefining-Netflix-UIUX-and-Product", internal: false, title: "System Design" },
     { image: Picture28, link: "/Animation", internal: true, title: "3D Animation" },
-    { image: Picture29, link: "https://www.behance.net/niharikasharma17", internal: false, title: "Product Design" },
+    { image: Picture29, link: "https://www.behance.net/gallery/198885491/Product-Design-Portfolio", internal: false, title: "Product Design" },
     { image: Picture30, link: "/VideoProduction", internal: true, title: "Video Storytelling" }
   ];
 
@@ -96,17 +96,17 @@ const Contact: React.FC = () => {
             overflow: "hidden",
             width: "100%"
           }}>
-            {/* Contact Section */}
+            {/* Contact Section — reduced padding and gap for compact height */}
             <div style={{
               backgroundColor: "#F6EFD2",
-              padding: "32px 20px 28px",
+              padding: "20px 20px 18px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center"
             }}>
               <h1 style={{
-                fontSize: "clamp(24px, 4vw, 36px)",
-                marginBottom: "-30px",
+                fontSize: "clamp(20px, 4vw, 30px)",
+                marginBottom: "-24px",
                 color: "#333",
                 textAlign: "center"
               }}>
@@ -114,9 +114,9 @@ const Contact: React.FC = () => {
               </h1>
 
               <h2 style={{
-                fontSize: "clamp(32px, 6vw, 48px)",
+                fontSize: "clamp(26px, 6vw, 42px)",
                 fontWeight: "bold",
-                marginBottom: "10px",
+                marginBottom: "6px",
                 color: "#000",
                 letterSpacing: "2px",
                 textAlign: "center"
@@ -125,21 +125,21 @@ const Contact: React.FC = () => {
               </h2>
 
               <p style={{
-                fontSize: "clamp(16px, 2.5vw, 20px)",
-                marginBottom: "24px",
+                fontSize: "clamp(14px, 2.5vw, 18px)",
+                marginBottom: "16px",
                 color: "#555",
                 textAlign: "center"
               }}>
                 and continue this story
               </p>
 
-              {/* Form — 30px padding */}
+              {/* Form — compact padding and gap */}
               <div style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "20px",
+                gap: "12px",
                 backgroundColor: "white",
-                padding: "30px",
+                padding: "20px",
                 borderRadius: "20px",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
                 border: "3px solid black",
@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   required
                   style={{
-                    padding: "15px",
+                    padding: "10px 15px",
                     fontSize: "16px",
                     border: "2px solid #333",
                     borderRadius: "5px",
@@ -170,7 +170,7 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   required
                   style={{
-                    padding: "15px",
+                    padding: "10px 15px",
                     fontSize: "16px",
                     border: "2px solid #333",
                     borderRadius: "5px",
@@ -184,9 +184,9 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={6}
+                  rows={4}
                   style={{
-                    padding: "15px",
+                    padding: "10px 15px",
                     fontSize: "16px",
                     border: "2px solid #333",
                     borderRadius: "5px",
@@ -199,7 +199,7 @@ const Contact: React.FC = () => {
                 <button
                   onClick={handleSubmit}
                   style={{
-                    padding: "15px 30px",
+                    padding: "12px 30px",
                     fontSize: "18px",
                     fontWeight: "bold",
                     backgroundColor: "#333",
@@ -215,27 +215,32 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
-            {/* Projects Section */}
+            {/* Projects Section — carousel */}
             <div style={{
               backgroundColor: "#000",
-              padding: "36px 20px 40px"
+              padding: "28px 0 36px"
             }}>
               <h2 style={{
                 fontSize: "36px",
                 fontWeight: "bold",
                 color: "white",
                 textAlign: "center",
-                marginBottom: "30px"
+                marginBottom: "20px"
               }}>
                 PROJECTS
               </h2>
 
+              {/* Horizontal scrollable carousel */}
               <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gridTemplateRows: "repeat(2, 1fr)",
-                width: "100%",
-                gap: "0"
+                display: "flex",
+                overflowX: "auto",
+                gap: "14px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
+                scrollSnapType: "x mandatory",
+                WebkitOverflowScrolling: "touch",
+                msOverflowStyle: "none",
+                scrollbarWidth: "none"
               }}>
                 {projects.map((project, index) => (
                   <div
@@ -243,9 +248,14 @@ const Contact: React.FC = () => {
                     onClick={() => project.internal ? navigate(project.link) : window.open(project.link, "_blank")}
                     style={{
                       position: "relative",
+                      flexShrink: 0,
+                      width: "65vw",
+                      maxWidth: "260px",
+                      aspectRatio: "1/1",
+                      borderRadius: "12px",
                       overflow: "hidden",
                       cursor: "pointer",
-                      aspectRatio: "1/1"
+                      scrollSnapAlign: "start"
                     }}
                   >
                     <img
@@ -255,9 +265,23 @@ const Contact: React.FC = () => {
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
-                        display: "block"
+                        display: "block",
+                        opacity: 0.6
                       }}
                     />
+                    {/* Project title overlay */}
+                    <div style={{
+                      position: "absolute",
+                      bottom: "10px",
+                      left: "10px",
+                      right: "10px",
+                      fontSize: "13px",
+                      fontWeight: "bold",
+                      color: "#fff",
+                      textShadow: "0 1px 4px rgba(0,0,0,0.7)"
+                    }}>
+                      {project.title}
+                    </div>
                   </div>
                 ))}
               </div>

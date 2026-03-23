@@ -123,8 +123,8 @@ const ComicPortfolio: React.FC = () => {
     const progress = (transparent / (pixels.length / 4)) * 100;
     setProgress(progress);
 
-    // Trigger heartbeat animation at 60%
-    if (progress >= 60) {
+    // Trigger heartbeat animation at 50%
+    if (progress >= 50) {
       setShowHeartbeat(true);
     }
   };
@@ -189,11 +189,44 @@ const ComicPortfolio: React.FC = () => {
             <p style={{
               fontSize: "18px",
               lineHeight: "1.6",
-              marginBottom: "30px",
+              marginBottom: "20px",
               color: "#555"
             }}>
               This comic is my portfolio. Some frames reveal my projects, others move the story forward. Follow the frames, {isTouchDevice ? 'swipe to discover' : 'hover to discover'}, and click to explore.
             </p>
+            {isTouchDevice && (
+              <div style={{
+                backgroundColor: "#F6EFD2",
+                border: "2px dashed #333",
+                borderRadius: "10px",
+                padding: "16px 20px",
+                marginBottom: "24px",
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "12px",
+                textAlign: "left"
+              }}>
+                <span style={{ fontSize: "28px", lineHeight: "1" }}>🪙</span>
+                <div>
+                  <p style={{
+                    fontSize: "15px",
+                    fontWeight: "bold",
+                    color: "#333",
+                    margin: "0 0 4px 0"
+                  }}>
+                    Scratch Card Frames
+                  </p>
+                  <p style={{
+                    fontSize: "14px",
+                    color: "#555",
+                    margin: 0,
+                    lineHeight: "1.5"
+                  }}>
+                    Two frames in this comic are scratch cards — they start in black & white. <strong>Swipe your finger across them</strong> to scratch away the surface and reveal a colourful project hidden underneath.
+                  </p>
+                </div>
+              </div>
+            )}
             <button 
               onClick={handleBeginStory}
               style={{
@@ -304,6 +337,29 @@ const ComicPortfolio: React.FC = () => {
                           transition: "opacity 0.5s ease-out"
                         }}
                       />
+                      {/* Post-reveal tap prompt */}
+                      {scratchProgress5 > 50 && (
+                        <div
+                          onClick={handleSelfCheckoutClick}
+                          style={{
+                            
+                            transform: "translateX(-50%)",
+                            backgroundColor: "#333",
+                            color: "white",
+                            padding: "10px 18px",
+                            borderRadius: "15px",
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            whiteSpace: "nowrap",
+                            cursor: "pointer",
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                            animation: "heartbeat 1.4s ease-in-out infinite",
+                            zIndex: 10
+                          }}
+                        >
+                          🎉 You unlocked a project — tap to explore!
+                        </div>
+                      )}
                     </>
                   ) : (
                     <img
@@ -331,16 +387,18 @@ const ComicPortfolio: React.FC = () => {
                   }} />
                 )}
                 <button className="download-btn" onClick={handleDownloadResume} style={{
-                  marginLeft: isTouchDevice ? "0" : "-240px", 
-                  height: isTouchDevice ? "auto" : "300px", 
-                  width: isTouchDevice ? "100%" : "230px", 
-                  marginTop: isTouchDevice ? "0" : "10px", 
-                  borderColor:"black", 
-                  borderWidth: "3px",
-                  padding: isTouchDevice ? "20px" : "0"
-                }} >
-                  DOWNLOAD<br />RESUME
-                </button>
+  marginLeft: isTouchDevice ? "0" : "-240px", 
+  height: isTouchDevice ? "auto" : "300px", 
+  width: isTouchDevice ? "100%" : "230px", 
+  marginTop: isTouchDevice ? "0" : "10px", 
+  borderColor: "white",
+  borderWidth: "3px",
+  padding: isTouchDevice ? "20px" : "0",
+  backgroundColor: "#333",
+  color: "white"
+}} >
+  DOWNLOAD<br />RESUME
+</button>
                  
           </div>
 
@@ -395,6 +453,31 @@ const ComicPortfolio: React.FC = () => {
                           transition: "opacity 0.5s ease-out"
                         }}
                       />
+                      {/* Post-reveal tap prompt */}
+                      {scratchProgress8 > 50 && (
+                        <div
+                          onClick={handleRelyClick}
+                          style={{
+                            
+                            bottom: "16px",
+                            
+                            transform: "translateX(-50%)",
+                            backgroundColor: "#333",
+                            color: "white",
+                            padding: "10px 18px",
+                            borderRadius: "15px",
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            whiteSpace: "nowrap",
+                            cursor: "pointer",
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                            animation: "heartbeat 1.4s ease-in-out infinite",
+                            zIndex: 10
+                          }}
+                        >
+                          🎉 You unlocked a project — tap to explore!
+                        </div>
+                      )}
                     </>
                   ) : (
                     <img 
